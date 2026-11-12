@@ -43,4 +43,4 @@ if st.button("Rechercher et Générer"):
                         st.divider()
                         
             except Exception as e:
-                st.error(f une erreur est survenue : {e})
+                st.error(f"Une erreur est survenue : {e}")
