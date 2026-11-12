@@ -72,3 +72,13 @@ if __name__ == "__main__":
         for i, doc in enumerate(docs):
             print(f"--- Résultat {i+1} (Source : {doc.metadata.get('source', 'Inconnue')}) ---")
             print(doc.page_content[:300] + "...\n")
+
+def run_pipeline():
+    # Tout ton code de chargement des PDF, chunking et création de la base ChromaDB
+    print("Génération de la base vectorielle en cours...")
+    # Exemple :
+    # embeddings = HuggingFaceEmbeddings(...)
+    # db = Chroma.from_documents(chunks, embeddings, persist_directory="chroma_db")
+
+if __name__ == "__main__":
+    run_pipeline()
