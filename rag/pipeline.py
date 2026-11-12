@@ -1,11 +1,11 @@
 import os
 import shutil
+import chromadb
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
-# Définition des chemins (à adapter si besoin)
 DATA_DIR = "data"
 DB_DIR = "chroma_db"
 
@@ -40,10 +40,13 @@ def build_vector_store():
 
     embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     
+    persistent_client = chromadb.PersistentClient(path=DB_DIR)
+    
     vector_store = Chroma.from_documents(
-        chunks, 
-        embeddings, 
-        persist_directory=DB_DIR
+        documents=chunks,
+        embedding=embeddings,
+        client=persistent_client,
+        collection_name="aviation_accidents"
     )
     
     print("Base vectorielle ChromaDB créée et sauvegardée avec succès.")
