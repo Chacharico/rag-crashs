@@ -1,6 +1,13 @@
 import streamlit as st
 import os
 import sys
+from rag.pipeline import run_pipeline # ou le nom de la fonction qui génère la base
+
+db_path = "chroma_db" # chemin vers ta base vectorielle
+
+if not os.path.exists(db_path):
+    # Génération automatique si la base n'existe pas
+    run_pipeline()
 
 # Ajouter la racine du projet au path pour importer rag
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
