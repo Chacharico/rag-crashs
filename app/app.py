@@ -1,6 +1,15 @@
-import streamlit as st
-import os
 import sys
+import os
+
+# Ajoute la racine du projet (le dossier parent de 'app') au chemin Python
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import streamlit as st
+from rag.pipeline import run_pipeline
+
+db_path = "chroma_db"
+if not os.path.exists(db_path):
+    run_pipeline()
 from rag.pipeline import run_pipeline # ou le nom de la fonction qui génère la base
 
 db_path = "chroma_db" # chemin vers ta base vectorielle
